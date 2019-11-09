@@ -1,0 +1,48 @@
+<div class="container" style="padding-top:40px;">  
+  <div class="row">  
+    <div class="col-md-6 mx-auto">  
+      <div class="card mx-4">  
+        <div class="card-body p-4">  
+          <form [formGroup]="userForm" (ngSubmit)="onFormSubmit(userForm.value)">  
+            <h1 style="text-align:center">Register</h1>  
+          
+            <div class="input-group mb-3">  
+              <input type="text" class="form-control" placeholder="email"  formControlName="email">  
+            </div> 
+            <div class="input-group mb-3">  
+              <input type="password" class="form-control" placeholder="password"  formControlName="password">  
+            </div>  
+            <div class="input-group mb-3">  
+              <select ng-model="user.role" class="form-control" formControlName="userRole">
+                <option [ngValue]="null">Choose your role</option>
+                <option value="Admin">Admin</option>
+                <option value="Company">Company</option>
+                <option value="Individual">Individual</option>
+              </select>
+            </div>  
+            <div class="input-group mb-4" *ngIf="this.isButtonVisible">  
+                <form #f="ngForm">
+                    <input type="image" (click)="processImage()" src="/assets/img/cam-icon.jpg" 
+                       width="60" height="60" />
+                  </form>
+                  <button *ngIf="faceApiResponse | async" type="button">
+                  </button>
+            </div>
+            <div class="input-group mb-4">
+                <img class="facialImg" *ngIf="imageString" [src]="imageString" alt="imageString" 
+                  height="200" width="200" />  
+              </div>
+            <div class="row">  
+              <div class="col-6">  
+                <button type="submit" class="btn btn-primary px-4">Register</button> 
+              </div>
+              <div class="col-6">  
+                <a [routerLink]="['/login']" class="btn btn-link">Cancel</a>
+              </div>  
+            </div>  
+          </form>  
+        </div>  
+      </div>  
+    </div>  
+  </div>  
+</div>  
